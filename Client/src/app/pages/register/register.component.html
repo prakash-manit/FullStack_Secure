@@ -1,1 +1,50 @@
-<p>register works!</p>
+<div class="h-screen flex items-center justify-center">
+    <form>
+        <h1>Register</h1>
+        <h4>
+            Create your account
+        </h4>
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email">
+            <mat-icon matPrefix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Full Name</mat-label>
+            <input matInput placeholder="Full Name">
+            <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Roles</mat-label>
+            <mat-select multiple>
+                <mat-option>Admin</mat-option>
+                <mat-option>User</mat-option>
+            </mat-select>
+            <mat-icon matPrefix>groups</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Password</mat-label>
+            <input matInput type="{{passwordHide? 'password':'text'}}" placeholder="Confirm Password">
+            <mat-icon matPrefix>lock</mat-icon>
+            <mat-icon (click)="passwordHide =!passwordHide" matSuffix> {{passwordHide? 'visibility_off':'visibility'}} </mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="{{confirmPasswordHide? 'password':'text'}}" placeholder="Confirm Password">
+            <mat-icon matPrefix>lock</mat-icon>
+            <mat-icon (click)="confirmPasswordHide =!confirmPasswordHide" matSuffix> {{confirmPasswordHide? 'visibility_off':'visibility'}} </mat-icon>
+        </mat-form-field>
+
+        <button class="w-full text-white py-2 disabled:bg-purple-400 bg-purple-700" type="submit">
+            Register
+        </button>
+        <div class="my-4">
+            Already have an account?
+        </div>
+        <a href="" class="text-purple-700" [routerLink]="['/login']">Login</a>
+    </form>
+</div>
