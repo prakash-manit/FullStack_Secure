@@ -1,5 +1,11 @@
 <div class="h-screen flex items-center justify-center">
     <form class="w-1/5" [formGroup]="registerForm" (ngSubmit)="register()">
+        @for(error of errors; track error){
+            <div class="bg-red-100">
+                {{error.description}}
+            </div>
+        }
+
         <h1>Register</h1>
         <h4>
             Create your account
@@ -19,8 +25,9 @@
         <mat-form-field appearance="fill" class="w-full">
             <mat-label>Roles</mat-label>
             <mat-select multiple formControlName="roles">
-                <mat-option>Admin</mat-option>
-                <mat-option>User</mat-option>
+                @for (item of roles$ | async; track item) {
+                <mat-option [value]="item.name">{{item.name}}</mat-option>
+                }              
             </mat-select>
             <mat-icon matPrefix>groups</mat-icon>
         </mat-form-field>
@@ -38,8 +45,11 @@
             <mat-icon matPrefix>lock</mat-icon>
             <mat-icon (click)="confirmPasswordHide =!confirmPasswordHide" matSuffix> {{confirmPasswordHide? 'visibility_off':'visibility'}} </mat-icon>
         </mat-form-field>
+        <span class="text-red-600" *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.dirty && registerForm.get('confirmPassword')?.touched">
+                Password don't match
+        </span>
 
-        <button class="w-full text-white py-2 disabled:bg-purple-400 bg-purple-700" type="submit">
+        <button [disabled]="!registerForm.valid" class="w-full text-white py-2 disabled:bg-purple-400 bg-purple-700" type="submit">
             Register
         </button>
         <div class="my-4">

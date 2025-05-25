@@ -48,9 +48,11 @@ namespace Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RoleResponseDto>>> GetRoles ()
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<RoleResponseDto>>> GetRoles()
         {
-            var roles = await _roleManager.Roles.Select(r=> new RoleResponseDto{
+            var roles = await _roleManager.Roles.Select(r => new RoleResponseDto
+            {
                 Id = r.Id,
                 Name = r.Name,
                 TotalUsers = _userManager.GetUsersInRoleAsync(r.Name!).Result.Count

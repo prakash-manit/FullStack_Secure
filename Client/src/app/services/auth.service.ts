@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { AuthResponse } from '../interfaces/auth-response';
 import { HttpClient } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode'
+import { RegisterRequest } from '../interfaces/register-request';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,11 @@ export class AuthService {
         })
       );
     }
+
+    register(data:RegisterRequest):Observable<AuthResponse>{  
+      return this.http.post<AuthResponse>(`${this.apiUrl}/account/register`, data);
+    }
+
     getUserDetail=()=>{
       const token = this.getToken();
       if (!token) return null;
@@ -37,7 +43,6 @@ export class AuthService {
       };
       return userDetail
     };
-
 
     isLoggedIn =(): boolean => {
       const token = this.getToken();
