@@ -19,6 +19,10 @@ export class RegisterComponent implements OnInit{
   confirmPasswordHide: boolean = true;
   passwordHide: boolean = true;
 
+  register() {
+    
+  }
+
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       email: ['',[Validators.required, Validators.email]],

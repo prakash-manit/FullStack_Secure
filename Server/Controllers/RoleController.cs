@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using API.DTO;
-using API.Models;
+using Server.DTO;
+using Server.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Controllers
+namespace Server.Controllers
 {
     [Authorize(Roles = "Admin")]
     //[Authorize(Roles = "Admin, Manager")]
