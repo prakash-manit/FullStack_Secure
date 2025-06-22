@@ -1,0 +1,31 @@
+<div class = "mx-auto items-center p-8">
+    <h1 class="text-center">
+        Account Detail
+    </h1>
+    <div *ngIf="accountDetail$ | async as user" class ="mx-auto max-w-md">
+        <div class="text-center bg-blue-500 text-white">
+            {{user.fullName[0] | uppercase}}
+        </div>
+       
+        <div >
+            Full Name: {{user.fullName | titlecase}}
+        </div>  
+        <div class="grid grid-cols-2">
+            Email: {{user.email}}
+        </div>
+        <div class="grid grid-cols-2">
+            Roles: 
+            <ul>
+                <li *ngFor="let role of user.roles">
+                    {{role}}
+                </li>
+            </ul>
+        </div>
+        <div class="grid grid-cols-2">
+            Phone: {{user.phoneNumber}}
+        </div>
+        <div class="grid grid-cols-2">
+            Access Fail Count: {{user.accessFailedCount}}
+        </div>
+    </div>
+</div>
