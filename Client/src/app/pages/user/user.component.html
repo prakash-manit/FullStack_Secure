@@ -1,0 +1,21 @@
+<div class="mx-60 py-10">
+    <h1 class="text-3xl">All users</h1>
+    <table class="w-full rounded-md">
+        <thead>
+            <tr>
+                <th class="border py-2">Name</th>
+                <th class="border py-2">Email</th>
+                <th class="border py-2">Roles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of user$ | async; track item.id) {
+            <tr>
+                <td class="border py-2">{{item.fullName}}</td>
+                <td class="border py-2">{{item.email}}</td>
+                <td class="border py-2">{{item.roles.join(" , ") || '-'}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>>
