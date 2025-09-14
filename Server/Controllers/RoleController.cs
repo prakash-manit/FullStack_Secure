@@ -102,7 +102,7 @@ namespace Server.Controllers
 
             if (result.Succeeded)
             {
-                return Ok("Role deleted");
+                return Ok(new {message = "Role(s) deleted"});
             }
             else
             {
@@ -128,7 +128,7 @@ namespace Server.Controllers
             var result = await _userManager.AddToRoleAsync(user, role.Name!);
             if (result.Succeeded)
             {
-                return Ok("Role assigned");
+                return Ok(new {message = "Role assigned to user successfully"});
             }
             else
             {

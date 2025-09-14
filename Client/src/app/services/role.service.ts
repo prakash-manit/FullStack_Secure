@@ -21,4 +21,7 @@ export class RoleService {
 
   deleteRole = (id: string): Observable<{message:string}>=>
     this.http.delete<{message:string}>(`${this.apiUrl}role/${id}`);
-}
+
+  assignRoleToUser = (userId: string, roleId: string): Observable<{message:string}>=>
+    this.http.post<{message:string}>(`${this.apiUrl}role/assign`, {userId, roleId});
+} 
