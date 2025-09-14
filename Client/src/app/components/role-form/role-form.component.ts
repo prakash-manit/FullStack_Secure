@@ -15,9 +15,9 @@ import { RoleCreateRequest } from '../../interfaces/role-create-request';
 export class RoleFormComponent {
   @Input({required:true}) role!:RoleCreateRequest;
   @Input() errorMessage!:string;
-  @Output() addRole:EventEmitter<RoleCreateRequest> = new EventEmitter<RoleCreateRequest>();
+  @Output() createRole:EventEmitter<RoleCreateRequest> = new EventEmitter<RoleCreateRequest>();
 
-  add(){
-    this.addRole.emit(this.role);
+  addRole(){
+    this.createRole.emit(this.role);
   }
 }

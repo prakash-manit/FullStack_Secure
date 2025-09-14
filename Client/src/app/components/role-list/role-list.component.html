@@ -1,0 +1,23 @@
+<div class="rounded-md mt-5 p-5 bg-white shadow-md w-full">
+    <h2>Role List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Role Name</th>
+                <th>Total Users</th>
+                <th>Actions</th>
+            </tr>     
+        </thead>
+        <tbody>
+            @for (role of roles; track role.id) {
+            <tr>
+                <td>{{ role.name }}</td>
+                <td>{{ role.totalUsers }}</td>
+                <td>
+                    <mat-icon class="action-icon" (click)="delete(role.id)">delete</mat-icon>
+                </td>
+            </tr>
+            }    
+        </tbody>
+    </table>
+</div>

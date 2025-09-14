@@ -1,6 +1,11 @@
 <div class="p-3">
     <h1 class="text-2xl">Role Management</h1>
-    <div class="w-1/2">
-        <app-role-form [errorMessage]="errorMessage" [role]="role" (addRole)="createRole($event)" />
+    <div class="flex justify-center">
+        <div class="w-1/2">
+            <app-role-form [errorMessage]="errorMessage" [role]="role" (createRole)="createRole($event)" />
+        </div>
+        <div class="w-full shadow-sm">
+            <app-role-list [roles]="roles$ | async" (deleteRole)="deleteRole($event)" />
+        </div>
     </div>
 </div>
