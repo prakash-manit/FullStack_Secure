@@ -2,7 +2,7 @@
     <h2>Role List</h2>
     <table>
         <thead>
-            <tr>
+            <tr class="gap-10">
                 <th>Role Name</th>
                 <th>Total Users</th>
                 <th>Actions</th>
@@ -10,11 +10,11 @@
         </thead>
         <tbody>
             @for (role of roles; track role.id) {
-            <tr>
+            <tr class="gap-10">
                 <td>{{ role.name }}</td>
                 <td>{{ role.totalUsers }}</td>
                 <td>
-                    <mat-icon class="action-icon" (click)="delete(role.id)">delete</mat-icon>
+                    <mat-icon color = "warn" class="cursor-pointer" (click)="delete(role.id)">delete</mat-icon>
                 </td>
             </tr>
             }    

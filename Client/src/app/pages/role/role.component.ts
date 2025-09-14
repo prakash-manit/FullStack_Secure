@@ -24,6 +24,7 @@ export class RoleComponent {
   createRole(role:RoleCreateRequest){
     this.roleService.createRole(role).subscribe({
       next:(response: {message:string}) =>{
+        this.roles$ = this.roleService.getRoles();
         this.snackBar.open("Role created Successfully", "OK", { 
           duration: 3000
         });
@@ -36,7 +37,17 @@ export class RoleComponent {
   }
 
   deleteRole(id:string){
-    // this.roleService.deleteRole(id).subscribe({
-    //   next:(response: {message:string}) =>{   
+    this.roleService.deleteRole(id).subscribe({
+      next:(response) =>{
+        this.roles$ = this.roleService.getRoles();
+        this.snackBar.open("Role deleted Successfully", "Close", { 
+          duration: 3000
+        });
+      },
+      error:(error:HttpErrorResponse) =>{
+        if (error.status == 400) {
+          this.errorMessage = error.error;
+      }}
+    });  
   }
 }

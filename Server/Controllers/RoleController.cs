@@ -73,7 +73,8 @@ namespace Server.Controllers
             var result = await _roleManager.DeleteAsync(role);
             if (result.Succeeded)
             {
-                return Ok("Role deleted");
+                return Ok(new {message = "Role deleted"});
+                //return Ok("Role deleted");
             }
 
             return BadRequest("Role deletion failed");
