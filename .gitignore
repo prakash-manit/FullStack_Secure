@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 Server/auth.db-shm
 Server/auth.db-wal
+Server/auth.db

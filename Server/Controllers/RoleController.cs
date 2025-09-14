@@ -40,8 +40,8 @@ namespace Server.Controllers
 
             if (roleResult.Succeeded)
             {
-                return Ok("Role created"); 
-                //return Ok(new {message = "Role created"});
+                //return Ok("Role created"); 
+                return Ok(new {message = "Role created"});
             }
 
             return BadRequest("Role creation failed");
@@ -79,6 +79,36 @@ namespace Server.Controllers
             return BadRequest("Role deletion failed");
         }
 
+        [HttpDelete]
+        public async Task<IActionResult> DeleteRoles(string ids)
+        {
+            var idList = ids.Split(',').ToList();
+            var result = new IdentityResult();
+            foreach (var id in idList)
+            {
+                var role = await _roleManager.FindByIdAsync(id);
+                if (role is null)
+                {
+                    return NotFound($"Role with id {id} doesn't exist");
+                }
+
+                result = await _roleManager.DeleteAsync(role);
+                if (!result.Succeeded)
+                {
+                    return BadRequest($"Role deletion failed for id {id}");
+                }
+            }
+
+            if (result.Succeeded)
+            {
+                return Ok("Role deleted");
+            }
+            else
+            {
+                return BadRequest("Role deletion failed");
+            }            
+        }
+
         [HttpPost("assign")]
         public async Task<IActionResult> AssignRole([FromBody] RoleAssignDto roleAssignDto)
         {
@@ -104,9 +134,6 @@ namespace Server.Controllers
                 var error = result.Errors.FirstOrDefault();
                 return BadRequest (error!.Description);
             }
-
-
-
         }
     }
 }
